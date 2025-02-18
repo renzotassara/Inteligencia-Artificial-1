@@ -1,0 +1,13 @@
+(define (domain BLOQUES)
+  (:requirements :strips)
+  (:predicates (sobre ?x ?y)
+               (libre_superior ?x))
+  
+  (:action desapilar
+         :parameters (?x ?y)
+         :precondition (and (sobre ?x ?y) (libre_superior ?x))
+         :effect (and (libre_superior ?x) (libre_superior ?y) (not (sobre ?x ?y))))
+  (:action apilar
+         :parameters (?x ?y)
+         :precondition (and (libre_superior ?x) (libre_superior ?y))
+         :effect (and (not (libre_superior ?y)) (sobre ?x ?y))))
